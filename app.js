@@ -17,19 +17,26 @@ window.addEventListener("load", () => {
 
             // Originally api key contains your specific geolocation, however, we'll use 'longitude' and 'latitude' retried from user.
             const api = `${proxy}https://api.darksky.net/forecast/50262ecb4840fb81ad09514d8a181659/${latitude},${longitude}`;
-
-            fetch(api)
-                .then(response => {
-                    return response.json();
-                })
-                .then(data => {
-                    const {temperature, summary, icon} = data.currently;
-
-                    setText(temperature, summary, data.timezone);
-                    setIcons(icon, document.querySelector(".icon"));
-                    setDegrees(temperature);
-                })
+            fetchData(api);
         });
+    }
+
+    function fetchData(api) {
+        fetch(api)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const {temperature, summary, icon} = data.currently;
+
+                setText(temperature, summary, data.timezone);
+                setIcons(icon, document.querySelector(".icon"));
+                setDegrees(temperature);
+
+                // Dismissing loading animation
+                const loader = document.querySelector(".loader");
+                loader.className += " hidden"; //setting name of the object to loader hidsden so it becomes hidden
+            })
     }
 
     function setIcons(icon, iconId) {

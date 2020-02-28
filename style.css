@@ -42,3 +42,39 @@ cursor: pointer;
 .degree-section h2 {
   font-size: 40px;
 }
+
+/*---------------loader----------------*/
+.space-image {
+  height: 25%;
+  width: 25%;
+  margin: 5px;
+}
+
+.loader {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+}
+
+.loader img {
+  width: 100px;
+}
+
+.loader.hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
